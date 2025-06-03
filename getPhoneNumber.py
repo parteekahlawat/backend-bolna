@@ -7,6 +7,6 @@ headers = {
 }
 
 def get_numbers():
-    url = f"{Config.BOLNA_API_URL}/numbers"
+    url = f"{Config.BOLNA_API_URL}/phone-numbers/all"
     response = requests.get(url, headers=headers)
     return response.json()
