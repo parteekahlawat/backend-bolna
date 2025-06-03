@@ -6,11 +6,12 @@ app = Flask(__name__)
 @app.route("/call", methods=["POST"])
 def make_call():
     data = request.json
-    phone_number = data.get("phone_number")
+    to_phone_number = data.get("to_phone_number")
+    from_phone_number = data.get("from_phone_number")
     message = data.get("message")
-    if not phone_number or not message:
+    if not to_phone_number or not message:
         return jsonify({"error": "Missing parameters"}), 400
-    result = initiate_call(phone_number, message)
+    result = initiate_call(to_phone_number, message)
     return jsonify(result)
 
 @app.route("/get-numbers", methods=["GET"])
