@@ -1,25 +1,20 @@
 from flask import Flask, request, jsonify
+from flask_restful import Resource, Api
 # from bolna import initiate_call, get_numbers, send_message
-from getPhoneNumber import get_numbers
+# from getPhoneNumber import get_numbers
+from getPhoneNumber import GetNumbers
+from getAgent import GetAgents
 from getAllCalls import get_all_calls_agent
 from getAgent import get_agent
+
+
 app = Flask(__name__)
+api = Api(app)
 
-# @app.route("/call", methods=["POST"])
-# def make_call():
-#     data = request.json
-#     to_phone_number = data.get("to_phone_number")
-#     from_phone_number = data.get("from_phone_number")
-#     message = data.get("message")
-#     if not to_phone_number or not message:
-#         return jsonify({"error": "Missing parameters"}), 400
-#     result = initiate_call(to_phone_number, message)
+# @app.route("/get-numbers", methods=["GET"])
+# def numbers():
+#     result = get_numbers()
 #     return jsonify(result)
-
-@app.route("/get-numbers", methods=["GET"])
-def numbers():
-    result = get_numbers()
-    return jsonify(result)
 
 @app.route("/get-calls", methods=["GET"])
 def getCalls():
@@ -27,20 +22,20 @@ def getCalls():
     result = get_all_calls_agent(agents[0]['id'])
     return jsonify(result)
 
-@app.route("/get-agents", methods=["GET"])
-def getAgents():
-    result = get_agent()
-    return jsonify(result)
-
-# @app.route("/send-message", methods=["POST"])
-# def message():
-#     data = request.json
-#     phone_number = data.get("phone_number")
-#     text = data.get("text")
-#     if not phone_number or not text:
-#         return jsonify({"error": "Missing parameters"}), 400
-#     result = send_message(phone_number, text)
+# @app.route("/get-agents", methods=["GET"])
+# def getAgents():
+#     result = get_agent()
 #     return jsonify(result)
+
+
+    # def post(self):
+    #     data = request.json
+    #     user = {"id": len(users) + 1, "name": data["name"]}
+    #     users.append(user)
+    #     return user, 201
+
+api.add_resource(GetNumbers, '/get-numbers')
+api.add_resource(GetAgents, '/get-agents')
 
 if __name__ == "__main__":
     app.run(debug=True)
