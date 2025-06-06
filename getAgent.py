@@ -2,7 +2,7 @@ import requests
 from config import Config
 
 from flask import jsonify
-from flask_restful import Resource, Api
+from flask_restful import Resource
 
 
 def get_agent():
