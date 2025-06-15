@@ -9,3 +9,7 @@ class Config:
     SECRET_KEY = 'your_secret_key'
     SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost/your_database'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
+    # MongoDB Configuration
+    MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
+    MONGODB_DB_NAME = os.getenv('MONGODB_DB_NAME', 'bolna_calls_db')

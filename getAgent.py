@@ -1,8 +1,8 @@
 import requests
 from config import Config
-
-from flask import jsonify
+from flask import jsonify, request
 from flask_restful import Resource
+# from database import get_user, get_agent_calls, store_calls
 
 
 def get_agent():
